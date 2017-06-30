@@ -26,7 +26,7 @@ commit_changes()
     git config user.email "jenkins@muenster-webdesign.net"
     git config user.name "Mr. Jenkins"
     git checkout -b "build-${BUILD_NUMBER}"
-    git add composer.lock
+    git add .
     git commit -m "Mr. Jenkins created a build: build-${BUILD_NUMBER}"
     git push origin "build-${BUILD_NUMBER}"
 }
@@ -41,6 +41,7 @@ create_package()
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
         --exclude=.git* \
+        --exclude=./artifacts \
         --exclude=./composer* .
 }
 #######################################
