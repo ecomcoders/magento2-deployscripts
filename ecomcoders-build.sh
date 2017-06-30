@@ -2,7 +2,7 @@
 set -euo pipefail
 
 BUILD_NUMBER=''
-PACKAGE_PATH='artifacts/'
+PACKAGE_PATH='../../artifacts/'
 
 usage="\
 
