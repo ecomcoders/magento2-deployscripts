@@ -1,0 +1,16 @@
+{
+    "name":"ecomcoders/magento2-deployscripts",
+    "description": "Magento 2 Deployment Scripts",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Christian Grugel",
+            "email": "dev@ecomcoders.com",
+            "homepage": "https://ecomcoders.com",
+            "role": "Author"
+        }
+    ],
+    "bin": [
+        "ecomcoders-build.sh"
+    ]
+}
