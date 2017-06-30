@@ -26,7 +26,7 @@ commit_changes()
     git config user.email "jenkins@muenster-webdesign.net"
     git config user.name "Mr. Jenkins"
     git checkout -b "build-${BUILD_NUMBER}"
-    git add shared/htdocs/composer.lock
+    git add composer.lock
     git commit -m "Mr. Jenkins created a build: build-${BUILD_NUMBER}"
     git push origin "build-${BUILD_NUMBER}"
 }
