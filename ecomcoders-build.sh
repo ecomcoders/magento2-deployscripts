@@ -40,9 +40,9 @@ create_package()
     echo "Creating package '${PACKAGE_NAME}'"
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
-        --exclude=.git* \
-        --exclude=auth.json
-        --exclude=.composer* .
+        --exclude=*.git* \
+        --exclude=./auth.json
+        --exclude=*.composer* .
 }
 #######################################
 # Main programm
