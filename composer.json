@@ -11,6 +11,7 @@
         }
     ],
     "bin": [
-        "ecomcoders-build.sh"
+        "ecomcoders-build.sh",
+        "ecomcoders-deploy.sh"
     ]
 }
