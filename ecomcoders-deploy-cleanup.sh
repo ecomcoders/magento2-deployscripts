@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-NUMBER_OF_BUILDS_TO_KEEP=2
+NUMBER_OF_BUILDS_TO_KEEP=4
 
 
 cd ..
