@@ -116,17 +116,21 @@ copy_media_files_to_release_folder()
 
 install_package()
 {
+    cd releases/${BUILDFOLDER}/
     echo "TODO: Implement install package script"
 }
 
 write_build_info_file()
 {
-    echo "${BUILDNUMBER}" > htdocs/pub/build.txt
+    echo "----------------------------------------------------"
+    echo "${BUILDNUMBER}" > pub/build.txt
 }
 
 update_filesystem_permissions()
 {
-    echo "TODO: Update File System Permissions"
+    echo "----------------------------------------------------"
+    echo "Update File System Permissions"
+    chmod -Rf g+w pub || true
 }
 
 update_symlinks()
