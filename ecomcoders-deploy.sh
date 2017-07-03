@@ -167,7 +167,8 @@ remove_build_artifacts()
 
 cleanup_build_folder()
 {
-    echo "TODO Cleanup Build Folder"
+    cd releases/${BUILDFOLDER}
+    vendor/bin/ecomcoders-deploy-cleanup.sh
 }
 
 #######################################
@@ -180,7 +181,7 @@ done
 
 check_environment
 init_directory_structure
-check_db_head
+#check_db_head
 get_build_number_and_release_folder
 get_previous_buildnumber
 generate_tmp_dir
