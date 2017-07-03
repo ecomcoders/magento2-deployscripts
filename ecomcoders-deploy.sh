@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -exuo pipefail
+set -euo pipefail
 
 VALID_ENVIRONMENTS=" production staging "
 export BUILDNUMBER=''
@@ -135,6 +135,7 @@ update_filesystem_permissions()
 
 update_symlinks()
 {
+    cd $ENVROOTDIR
     echo "----------------------------------------------------"
     if [ -n "$PREVIOUS_BUILDNUMBER" ]; then
         ln -sfn $PREVIOUS_BUILDFOLDER previous
