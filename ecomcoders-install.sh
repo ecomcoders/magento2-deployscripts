@@ -11,7 +11,7 @@ configure_magento2_environment()
         --key=$($EST KEY) \
         --db-host=$($EST DB_HOST) \
         --db-name=$($EST DB_NAME) \
-        --db-user=$($EST DB_USER) \
+        --db-user=$($EST DB_USERNAME) \
         --db-password=$($EST DB_PASSWORD)
 }
 
