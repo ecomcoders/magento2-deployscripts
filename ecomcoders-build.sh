@@ -41,8 +41,7 @@ create_package()
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
         --exclude-vcs \
-        --exclude='.*auth\.json' \
-        --exclude='.*composer\.json' .
+        --exclude='.*auth\.json' .
 }
 #######################################
 # Main programm
