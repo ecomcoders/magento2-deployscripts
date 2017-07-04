@@ -13,6 +13,7 @@
     "bin": [
         "ecomcoders-build.sh",
         "ecomcoders-deploy.sh",
-        "ecomcoders-deploy-cleanup.sh"
+        "ecomcoders-deploy-cleanup.sh",
+        "ecomcoders-install.sh"
     ]
 }

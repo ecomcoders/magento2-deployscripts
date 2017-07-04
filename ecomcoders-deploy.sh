@@ -34,26 +34,6 @@ init_directory_structure()
     fi
 }
 
-check_db_head()
-{
-    # Do not install a new build package when
-    # current database in production is in detached head mode
-    # (typically after rollback)
-    if [[ "$ENVIRONMENT" == production && -L 'current' ]]; then
-        echo "----------------------------------------------------"
-        echo "Check db head"
-        cd current
-        CURRENT_DB_NAME=$($N98 db:info dbname)
-        DB_NAME_HEAD='HALLO'
-
-        if [[ "$DB_NAME_HEAD" != "$CURRENT_DB_NAME" ]]; then
-            echo "----------------------------------------------------"
-            echo "ERROR: Current db name '${CURRENT_DB_NAME}' is not set to db head '${DB_NAME_HEAD}'"
-            exit 1
-        fi
-    fi
-}
-
 get_build_number_and_release_folder()
 {
     BUILDNUMBER=$(ls | grep build-*.tgz | sed -n "s/build-\(.*\).tgz/\1/p")
@@ -117,7 +97,7 @@ copy_media_files_to_release_folder()
 install_package()
 {
     cd releases/${BUILDFOLDER}/
-    echo "TODO: Implement install package script"
+    vendor/bin/ecomcoders-install.sh
 }
 
 write_build_info_file()
@@ -131,6 +111,27 @@ update_filesystem_permissions()
     echo "----------------------------------------------------"
     echo "Update File System Permissions"
     chmod -Rf g+w pub || true
+}
+
+check_db_head()
+{
+    # Do not switch to a new build package when
+    # current database in production is in detached head mode
+    # (typically after rollback)
+    cd $ENVROOTDIR
+    if [[ "$ENVIRONMENT" == production && -L 'current' ]]; then
+        echo "----------------------------------------------------"
+        echo "Check db head"
+        cd current
+        CURRENT_DB_NAME=$($N98 db:info dbname)
+        DB_NAME_HEAD='HALLO'
+
+        if [[ "$DB_NAME_HEAD" != "$CURRENT_DB_NAME" ]]; then
+            echo "----------------------------------------------------"
+            echo "ERROR: Current db name '${CURRENT_DB_NAME}' is not set to db head '${DB_NAME_HEAD}'"
+            exit 1
+        fi
+    fi
 }
 
 update_symlinks()
@@ -181,7 +182,6 @@ done
 
 check_environment
 init_directory_structure
-#check_db_head
 get_build_number_and_release_folder
 get_previous_buildnumber
 generate_tmp_dir
@@ -191,6 +191,7 @@ copy_media_files_to_release_folder
 install_package
 write_build_info_file
 update_filesystem_permissions
+#check_db_head
 update_symlinks
 print_success_message
 remove_build_artifacts
