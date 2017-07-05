@@ -8,6 +8,7 @@ BUILDFOLDER=''
 PREVIOUS_BUILDFOLDER=''
 export ENVROOTDIR=$(pwd -P)
 export ENVIRONMENT=${ENVROOTDIR##*/}
+export EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
 export N98='vendor/bin/n98-magerun2'
 export FLUSH_CACHE='NO'
 FLUSH_JS_CSS_CACHE='NO'
@@ -31,6 +32,7 @@ init_directory_structure()
         mkdir releases
         mkdir -p shared/var
         chmod g+w shared/var
+        echo "Order deny,allow\nDeny from all" > shared/var/.htaccess
     fi
 }
 
@@ -124,7 +126,7 @@ check_db_head()
         echo "Check db head"
         cd current
         CURRENT_DB_NAME=$($N98 db:info dbname)
-        DB_NAME_HEAD='HALLO'
+        DB_NAME_HEAD=$($EST DB_NAME)
 
         if [[ "$DB_NAME_HEAD" != "$CURRENT_DB_NAME" ]]; then
             echo "----------------------------------------------------"
@@ -191,7 +193,7 @@ copy_media_files_to_release_folder
 install_package
 write_build_info_file
 update_filesystem_permissions
-#check_db_head
+check_db_head
 update_symlinks
 print_success_message
 remove_build_artifacts
