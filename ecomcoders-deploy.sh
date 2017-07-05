@@ -119,6 +119,7 @@ generate_var_directory_symlink()
 {
     echo "----------------------------------------------------"
     echo "Generate var directory symlink"
+    rm -rf var
     ln -sfn ../../shared/var var
 }
 
