@@ -115,6 +115,11 @@ update_filesystem_permissions()
     chmod -Rf g+w pub || true
 }
 
+generate_var_directory_symlink()
+{
+    ln -sfn ../../shared/var var
+}
+
 check_db_head()
 {
     # Do not switch to a new build package when
@@ -193,6 +198,7 @@ copy_media_files_to_release_folder
 install_package
 write_build_info_file
 update_filesystem_permissions
+generate_var_directory_symlink
 check_db_head
 update_symlinks
 print_success_message
