@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
-EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-
 make_bin_magento_executable()
 {
     chmod +x bin/magento
@@ -26,6 +24,8 @@ configure_magento2_environment()
 # @TODO symlink media and var folder!
 # @TODO set BaseURLs
 # @TODO set production mode
+# @TODO activate caches
+# @TODO enable modules
 
 make_bin_magento_executable
 configure_magento2_environment
