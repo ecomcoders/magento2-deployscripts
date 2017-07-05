@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -exuo pipefail
 
+MAGENTO_CLI='php -d memory_limit=512M bin/magento'
+
 make_bin_magento_executable()
 {
     chmod +x bin/magento
@@ -17,11 +19,9 @@ configure_magento2_environment()
         --db-password=$($EST DB_PASSWORD)
 }
 
-
 #######################################
 # Main programm
 
-# @TODO symlink media and var folder!
 # @TODO set BaseURLs
 # @TODO set production mode
 # @TODO activate caches
