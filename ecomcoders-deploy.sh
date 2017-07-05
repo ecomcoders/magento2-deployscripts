@@ -117,6 +117,8 @@ update_filesystem_permissions()
 
 generate_var_directory_symlink()
 {
+    echo "----------------------------------------------------"
+    echo "Generate var directory symlink"
     ln -sfn ../../shared/var var
 }
 
