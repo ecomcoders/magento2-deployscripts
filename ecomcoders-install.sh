@@ -30,18 +30,19 @@ add_required_install_date()
 
 make_magento_production_ready()
 {
-    $($MAGENTO_CLI setup:upgrade)
-    $($MAGENTO_CLI setup:static-content:deploy)
-    $($MAGENTO_CLI setup:di:compile)
-    $($MAGENTO_CLI deploy:mode:set --skip-compilation production)
-    $($MAGENTO_CLI cache:enable)
-    $($MAGENTO_CLI cache:flush)
+    $MAGENTO_CLI setup:upgrade
+    # $MAGENTO_CLI setup:static-content:deploy
+    echo 'HUHU'
+    $MAGENTO_CLI setup:di:compile
+    $MAGENTO_CLI deploy:mode:set --skip-compilation production
+    $MAGENTO_CLI cache:enable
+    $MAGENTO_CLI cache:flush
 
     echo "----------------------------------------------------"
     echo "CURRENT APP STATUS"
-    $($MAGENTO_CLI setup:db:status)
-    $($MAGENTO_CLI deploy:mode:show)
-    $($MAGENTO_CLI cache:status)
+    $MAGENTO_CLI setup:db:status
+    $MAGENTO_CLI deploy:mode:show
+    $MAGENTO_CLI cache:status
 }
 #######################################
 # Main programm
