@@ -30,9 +30,13 @@ init_directory_structure()
         echo "----------------------------------------------------"
         echo "Init directory structure"
         mkdir releases
-        mkdir -p shared/var
-        chmod g+w shared/var
-        echo "Order deny,allow\nDeny from all" > shared/var/.htaccess
+        mkdir -p \
+            shared/var/log \
+            shared/var/report \
+            shared/pub/media
+        chmod g+w \
+            shared/var/* \
+            shared/pub/media
     fi
 }
 
@@ -115,12 +119,16 @@ update_filesystem_permissions()
     chmod -Rf g+w pub/static || true
 }
 
-generate_var_directory_symlink()
+generate_shared_directory_symlinks()
 {
     echo "----------------------------------------------------"
-    echo "Generate var directory symlink"
+    echo "Generate shared directory symlinks"
     rm -rf var
-    ln -sfn ../../shared/var var
+    ln -sfn ../../shared/var/log    var/log
+    ln -sfn ../../shared/var/report var/report
+
+    rm -rf pub/media
+    ln -sfn ../../shared/pub/media  pub/media
 }
 
 check_db_head()
@@ -201,7 +209,7 @@ copy_media_files_to_release_folder
 install_package
 write_build_info_file
 update_filesystem_permissions
-generate_var_directory_symlink
+generate_shared_directory_symlinks
 check_db_head
 update_symlinks
 print_success_message

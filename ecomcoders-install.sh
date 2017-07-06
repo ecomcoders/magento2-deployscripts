@@ -39,6 +39,7 @@ make_magento_production_ready()
 
     echo "----------------------------------------------------"
     echo "CURRENT APP STATUS"
+    echo "----------------------------------------------------"
     $MAGENTO_CLI setup:db:status
     $MAGENTO_CLI deploy:mode:show
     $MAGENTO_CLI cache:status
