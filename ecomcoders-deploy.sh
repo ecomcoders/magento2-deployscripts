@@ -112,7 +112,7 @@ update_filesystem_permissions()
 {
     echo "----------------------------------------------------"
     echo "Update File System Permissions"
-    chmod -Rf g+w pub || true
+    chmod -Rf g+w pub/static || true
 }
 
 generate_var_directory_symlink()
