@@ -28,14 +28,27 @@ add_required_install_date()
     sed -i -e "s/\"/'/g" app/etc/env.php
 }
 
+make_magento_production_ready()
+{
+    $($MAGENTO_CLI setup:upgrade)
+    $($MAGENTO_CLI setup:static-content:deploy)
+    $($MAGENTO_CLI setup:di:compile)
+    $($MAGENTO_CLI deploy:mode:set --skip-compilation production)
+    $($MAGENTO_CLI cache:enable)
+    $($MAGENTO_CLI cache:flush)
+
+    echo "----------------------------------------------------"
+    echo "CURRENT APP STATUS"
+    $($MAGENTO_CLI setup:db:status)
+    $($MAGENTO_CLI deploy:mode:show)
+    $($MAGENTO_CLI cache:status)
+}
 #######################################
 # Main programm
 
 # @TODO set BaseURLs
-# @TODO set production mode
-# @TODO activate caches
-# @TODO enable modules
 
 make_bin_magento_executable
 configure_magento2_environment
 add_required_install_date
+make_magento_production_ready
