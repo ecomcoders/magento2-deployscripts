@@ -126,11 +126,11 @@ generate_shared_directory_symlinks()
     cd var
 
     if [[ -d 'log' ]]; then
-        rm log
+        rm -rf log
     fi
 
     if [[ -d 'report' ]]; then
-        rm report
+        rm -rf report
     fi
 
     ln -sfn ../../../shared/var/log    log
@@ -140,7 +140,6 @@ generate_shared_directory_symlinks()
     cd pub
     rm -rf media
     ln -sfn ../../../shared/pub/media  media
-    cd ..
 }
 
 check_db_head()
