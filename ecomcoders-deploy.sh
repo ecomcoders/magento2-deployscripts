@@ -123,7 +123,7 @@ generate_shared_directory_symlinks()
 {
     echo "----------------------------------------------------"
     echo "Generate shared directory symlinks"
-    rm -rf var
+    rm -rf var/log var/report
     ln -sfn ../../shared/var/log    var/log
     ln -sfn ../../shared/var/report var/report
 
