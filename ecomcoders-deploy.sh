@@ -123,12 +123,15 @@ generate_shared_directory_symlinks()
 {
     echo "----------------------------------------------------"
     echo "Generate shared directory symlinks"
-    rm -rf var/log var/report
-    ln -sfn ../../shared/var/log    var/log
-    ln -sfn ../../shared/var/report var/report
+    cd var
+    ln -sfn ../../../shared/var/log    log
+    ln -sfn ../../../shared/var/report report
+    cd ..
 
-    rm -rf pub/media
-    ln -sfn ../../shared/pub/media  pub/media
+    cd pub
+    rm -rf media
+    ln -sfn ../../../shared/pub/media  media
+    cd ..
 }
 
 check_db_head()
