@@ -124,6 +124,15 @@ generate_shared_directory_symlinks()
     echo "----------------------------------------------------"
     echo "Generate shared directory symlinks"
     cd var
+
+    if [[ -d 'log' ]]; then
+        rm log
+    fi
+
+    if [[ -d 'report' ]]; then
+        rm report
+    fi
+
     ln -sfn ../../../shared/var/log    log
     ln -sfn ../../../shared/var/report report
     cd ..
