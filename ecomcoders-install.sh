@@ -5,7 +5,7 @@ MAGENTO_CLI='php -d memory_limit=512M bin/magento'
 
 make_bin_magento_executable()
 {
-    chmod +x bin/magento
+    chmod u+x bin/magento
 }
 
 configure_magento2_environment()
