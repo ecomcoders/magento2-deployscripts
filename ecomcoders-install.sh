@@ -30,12 +30,11 @@ add_required_install_date()
 
 make_magento_production_ready()
 {
-    LANGUAGES=$($EST STATIC_CONTENT_DEPLOY_LANGUAGES)
-    THEMES=$($EST STATIC_CONTENT_DEPLOY_EXCLUDE_THEMES)
+    STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
 
     $MAGENTO_CLI setup:upgrade
     $MAGENTO_CLI setup:di:compile
-    $MAGENTO_CLI setup:static-content:deploy --exclude-theme=${THEMES} $LANGUAGES
+    $MAGENTO_CLI setup:static-content:deploy $STATIC_CONTENT_DEPLOY_PARAMS
     $MAGENTO_CLI deploy:mode:set --skip-compilation production
     $MAGENTO_CLI cache:enable
     $MAGENTO_CLI cache:flush
