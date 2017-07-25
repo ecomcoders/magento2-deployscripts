@@ -127,7 +127,7 @@ move_precompiled_themes_back_to_static()
     if [[ -d "${TMPDIR}/themes" ]]; then
         echo "----------------------------------------------------"
         echo "Move precompiled frontend themes back to pub/static folder"
-        mv "${TMPDIR}/themes/*" pub/static/frontend/
+        mv ${TMPDIR}/themes/* pub/static/frontend/
     fi
     set +x
 }
