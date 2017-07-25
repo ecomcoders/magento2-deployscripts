@@ -95,6 +95,21 @@ move_files_to_release_folder()
     mv "${TMPDIR}/package" "releases/${BUILDFOLDER}"
 }
 
+move_precompiled_themes_to_tmpdir()
+{
+    set -x
+    echo "----------------------------------------------------"
+    echo "Move precompiled frontend themes to tmp dir"
+
+    if [[ -d "releases/${BUILDFOLDER}/pub/static/frontend" ]]; then
+        mkdir "${TMPDIR}/themes"
+        mv "releases/${BUILDFOLDER}/pub/static/frontend/*" "${TMPDIR}/themes"
+    else
+        echo "No precompiled theme found"
+    fi
+    set +x
+}
+
 copy_media_files_to_release_folder()
 {
     echo "TODO: Copy media files to release folder in staging environment"
@@ -104,6 +119,17 @@ install_package()
 {
     cd releases/${BUILDFOLDER}/
     vendor/bin/ecomcoders-install.sh
+}
+
+move_precompiled_themes_back_to_static()
+{
+    set -x
+    if [[ -d "${TMPDIR}/themes" ]]; then
+        echo "----------------------------------------------------"
+        echo "Move precompiled frontend themes back to pub/static folder"
+        mv "${TMPDIR}/themes/*" pub/static/frontend/
+    fi
+    set +x
 }
 
 write_build_info_file()
@@ -216,8 +242,10 @@ get_previous_buildnumber
 generate_tmp_dir
 extract_build_package
 move_files_to_release_folder
+move_precompiled_themes_to_tmpdir
 copy_media_files_to_release_folder
 install_package
+move_precompiled_themes_back_to_static
 write_build_info_file
 update_filesystem_permissions
 generate_shared_directory_symlinks

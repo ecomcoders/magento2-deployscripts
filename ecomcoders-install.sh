@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -exuo pipefail
+set -euo pipefail
 
 MAGENTO_CLI='php -d memory_limit=512M bin/magento'
 
