@@ -103,7 +103,7 @@ move_precompiled_themes_to_tmpdir()
 
     if [[ -d "releases/${BUILDFOLDER}/pub/static/frontend" ]]; then
         mkdir "${TMPDIR}/themes"
-        mv "releases/${BUILDFOLDER}/pub/static/frontend/*" "${TMPDIR}/themes"
+        mv releases/${BUILDFOLDER}/pub/static/frontend/* ${TMPDIR}/themes
     else
         echo "No precompiled theme found"
     fi
