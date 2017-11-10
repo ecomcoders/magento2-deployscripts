@@ -28,6 +28,11 @@ add_required_install_date()
     sed -i -e "s/\"/'/g" app/etc/env.php
 }
 
+apply_settings_from_est_csv_file()
+{
+    php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv
+}
+
 make_magento_production_ready()
 {
     STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
@@ -47,4 +52,5 @@ make_magento_production_ready()
 make_bin_magento_executable
 configure_magento2_environment
 add_required_install_date
+apply_settings_from_est_csv_file
 make_magento_production_ready
