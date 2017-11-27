@@ -140,6 +140,14 @@ print_summary()
     echo "SUCCESS - DATE: $(date +%d-%m-%Y_%H-%M)"
 }
 
+#######################################
+# Main programm
+while getopts 'c:' OPTION; do
+    case "${OPTION}" in
+        c)MAX_SNAPSHOTS_IN_ARCHIVE="${OPTARG}";;
+    esac
+done
+
 check_and_set_paths
 print_env_info
 test_and_prepare_snashot_dir
