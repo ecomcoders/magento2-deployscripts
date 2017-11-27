@@ -2,6 +2,9 @@
     "name":"ecomcoders/magento2-deployscripts",
     "description": "Magento 2 Deployment Scripts",
     "license": "OSL-3.0",
+    "require": {
+        "n98/magerun2": "^1.5.0"
+    },
     "authors": [
         {
             "name": "Christian Grugel",
@@ -14,6 +17,7 @@
         "ecomcoders-build.sh",
         "ecomcoders-deploy.sh",
         "ecomcoders-deploy-cleanup.sh",
-        "ecomcoders-install.sh"
+        "ecomcoders-install.sh",
+        "ecomcoders-backup.sh"
     ]
 }
