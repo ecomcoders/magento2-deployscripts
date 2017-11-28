@@ -12,7 +12,7 @@ PATH_DB_TEMP=${PATH_SCRIPT}../../../../'sync-manager-tmp'
 PATH_DB_TEMP_BACKUP=${PATH_DB_TEMP}/backup
 PATH_DB_TEMP_IMPORT=${PATH_DB_TEMP}/import
 
-. $PATH_SCRIPT/../ecomcoders/magento2-settings-bertelsbeck/sync-manager-config.sh
+. $PATH_SCRIPT/../../../../sync-manager-config.sh
 
 
 usage="\
