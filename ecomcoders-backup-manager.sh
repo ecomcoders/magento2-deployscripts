@@ -8,6 +8,7 @@ DB_HOST=''
 DB_USER=''
 DB_NAME=''
 DB_PASSWORD=''
+N98='vendor/bin/n98-magerun2'
 
 check_and_set_paths()
 {
@@ -93,10 +94,10 @@ clean_up_archive()
 
 prepare_backup()
 {
-    echo "----------------------------------------------------"
     cd $path_snapshot_latest
 
     if [[ -d 'db' && -d 'media' && -d 'files' ]]; then
+        echo "----------------------------------------------------"
         echo "START: Delete old files in 'latest' directory"
         rm -rf db files media build-*
     fi
@@ -123,14 +124,15 @@ backup_media()
 
 backup_database()
 {
-    echo "----------------------------------------------------"
-    echo "START: Backup database: ${db_name}"
+    cd ${path_build}
+    DB_NAME=$($N98 db:info dbname)
+    DB_HOST=$($N98 db:info host)
+    DB_USER=$($N98 db:info username)
+    DB_PASSWORD=$($N98 db:info password)
     cd ${path_snapshot_latest}db
-    DB_NAME=$($path_build $N98 DB:info dbname)
-    DB_HOST=$($path_build $N98 DB:info host)
-    DB_USER=$($path_build $N98 DB:info username)
-    DB_PASSWORD=$($path_build $N98 DB:info password)
 
+    echo "----------------------------------------------------"
+    echo "START: Backup database: ${DB_NAME}"
     mysqldump -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME} > db-${DB_NAME}.sql
 }
 

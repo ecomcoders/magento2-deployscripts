@@ -18,6 +18,6 @@
         "ecomcoders-deploy.sh",
         "ecomcoders-deploy-cleanup.sh",
         "ecomcoders-install.sh",
-        "ecomcoders-backup.sh"
+        "ecomcoders-backup-manager.sh"
     ]
 }
