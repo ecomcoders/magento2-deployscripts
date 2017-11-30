@@ -38,7 +38,7 @@ Commands:
 
 sync_media()
 {
-    $RSYNC_BIN -rz -e "ssh -p $SSH_PORT" --size-only --delete --itemize-changes --exclude='cache/' --exclude='css/' --exclude='js/' --exclude='.thumbs' $SSH_HOST:${REMOTE_BACKUP_PATH}/media/ $PATH_MEDIA
+    $RSYNC_BIN -rz -e "ssh -p $SSH_PORT" --size-only --delete --itemize-changes --exclude='cache/' --exclude='tmp/' --exclude='.thumbs' $SSH_HOST:${REMOTE_BACKUP_PATH}/media/ $PATH_MEDIA
     echo "----------------------------------------------------"
     echo "DONE: Sync media from remote path: ${REMOTE_BACKUP_PATH}"
 }

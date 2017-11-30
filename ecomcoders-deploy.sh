@@ -112,7 +112,15 @@ move_precompiled_themes_to_tmpdir()
 
 copy_media_files_to_release_folder()
 {
-    echo "TODO: Copy media files to release folder in staging environment"
+    case $ENVIRONMENT in
+        'staging')
+            copy_media_files_from_production_snapshot_to_staging
+    esac
+}
+
+copy_media_files_from_production_snapshot_to_staging()
+{
+    rsync -a --size-only --delete --itemize-changes --exclude='cache/' --exclude='tmp/' --exclude='.thumbs' ../production/snapshots/latest/media/ shared/pub/media/
 }
 
 install_package()
