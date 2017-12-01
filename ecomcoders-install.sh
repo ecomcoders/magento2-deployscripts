@@ -28,6 +28,12 @@ add_required_install_date()
     sed -i -e "s/\"/'/g" app/etc/env.php
 }
 
+import_database_from_production_snapshot_to_staging()
+{
+    $N98 db:drop --tables --force
+    $N98 db:import ${ENVROOTDIR}/../production/snapshots/latest/db/*.sql
+}
+
 apply_settings_from_est_csv_file()
 {
     php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv
@@ -52,5 +58,15 @@ make_magento_production_ready()
 make_bin_magento_executable
 configure_magento2_environment
 add_required_install_date
+
+case $ENVIRONMENT in
+    'production')
+        # apply_baseurl_settings;;
+        # prepare-db-rollback;;
+        ;;
+    'staging')
+        import_database_from_production_snapshot_to_staging;;
+esac
+
 apply_settings_from_est_csv_file
 make_magento_production_ready
