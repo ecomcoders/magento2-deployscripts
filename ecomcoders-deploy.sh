@@ -114,12 +114,14 @@ copy_media_files_to_release_folder()
 {
     case $ENVIRONMENT in
         'staging')
-            copy_media_files_from_production_snapshot_to_staging
+            copy_media_files_from_production_snapshot_to_staging;;
     esac
 }
 
 copy_media_files_from_production_snapshot_to_staging()
 {
+    echo "----------------------------------------------------"
+    echo "Start syncing media files with production"
     rsync -a --size-only --delete --itemize-changes --exclude='cache/' --exclude='tmp/' --exclude='.thumbs' ../production/snapshots/latest/media/ shared/pub/media/
 }
 
@@ -131,13 +133,11 @@ install_package()
 
 move_precompiled_themes_back_to_static()
 {
-    set -x
     if [[ -d "${TMPDIR}/themes" ]]; then
         echo "----------------------------------------------------"
         echo "Move precompiled frontend themes back to pub/static folder"
         mv ${TMPDIR}/themes/* pub/static/frontend/
     fi
-    set +x
 }
 
 write_build_info_file()
