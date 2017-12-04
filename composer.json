@@ -21,6 +21,7 @@
         "ecomcoders-backup-manager.sh",
         "ecomcoders-sync-manager.sh",
         "ecomcoders-prepare-db-rollback.sh",
-        "ecomcoders-rollback.sh"
+        "ecomcoders-rollback.sh",
+        "ecomcoders-restore-db-head.sh"
     ]
 }

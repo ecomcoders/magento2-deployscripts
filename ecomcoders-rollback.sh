@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 set -euo pipefail
 
 PATH_ENVIRONMENT=$(pwd -P)
@@ -27,7 +26,7 @@ get_current_db_name()
 
 get_target_db_name()
 {
-    TARGET_DB_PREFIX=$(vendor/bin/value.php production tools-config/env-settings-tool/settings.csv Est_Handler_SetVar DB_NAME_PREFIX)
+    TARGET_DB_PREFIX=$(php vendor/bin/value.php production vendor/bin/magento2-settings.csv Est_Handler_SetVar DB_NAME_PREFIX)
     TARGET_DB_NAME=${TARGET_DB_PREFIX}${TARGET_DB_SUFFIX}
     echo "----------------------------------------------------"
     echo "DONE: Get target db name '${TARGET_DB_NAME}'"
@@ -50,6 +49,7 @@ change_db_name_in_env_file()
     bin/magento setup:config:set --db-name=${TARGET_DB_NAME}
     echo "----------------------------------------------------"
     echo "DONE: Modified db name to ${TARGET_DB_NAME}"
+    cat app/etc/env.php
 }
 
 clear_cache()
