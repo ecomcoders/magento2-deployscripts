@@ -29,8 +29,6 @@ Sync Manager
 Commands:
   sync-manager [<options>] <command>
 ---------------------------------------
-  all                      sync modules (see below), media and database with remote snapshot
-  modules                  get latest versions by composer, re-create symlinks and apply environment settings
   media                    sync media with remote snapshot
   db                       sync databse with remote snapshot
   --help                   show manual
@@ -80,6 +78,7 @@ import_database()
 
 change_base_urls_to_dev()
 {
+    cd $PATH_SCRIPT
     $N98 config:set web/unsecure/base_url $BASE_URL
     $N98 config:set web/secure/base_url $BASE_URL
 }
