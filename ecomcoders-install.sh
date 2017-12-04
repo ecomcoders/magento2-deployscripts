@@ -28,6 +28,17 @@ add_required_install_date()
     sed -i -e "s/\"/'/g" app/etc/env.php
 }
 
+prepare-db-rollback()
+{
+    echo "----------------------------------------------------"
+    echo "START: Prepared DB rollback"
+    if [ -n "$PREVIOUS_BUILDNUMBER" ]; then
+        vendor/bin/ecomcoders-prepare-db-rollback.sh
+    else
+        echo "SKIPPED: Prepared DB rollback - no previous build number given"
+    fi
+}
+
 import_database_from_production_snapshot_to_staging()
 {
     $N98 db:drop --tables --force
@@ -53,17 +64,13 @@ make_magento_production_ready()
 #######################################
 # Main programm
 
-# @TODO set BaseURLs
-
 make_bin_magento_executable
 configure_magento2_environment
 add_required_install_date
 
 case $ENVIRONMENT in
     'production')
-        # apply_baseurl_settings;;
-        # prepare-db-rollback;;
-        ;;
+        prepare-db-rollback;;
     'staging')
         import_database_from_production_snapshot_to_staging;;
 esac

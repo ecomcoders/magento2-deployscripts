@@ -19,6 +19,7 @@
         "ecomcoders-deploy-cleanup.sh",
         "ecomcoders-install.sh",
         "ecomcoders-backup-manager.sh",
-        "ecomcoders-sync-manager.sh"
+        "ecomcoders-sync-manager.sh",
+        "ecomcoders-prepare-db-rollback.sh"
     ]
 }
