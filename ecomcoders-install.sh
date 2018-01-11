@@ -73,7 +73,7 @@ run_sass_styles_processing()
         gulp setup
         cd $MAGENTO_ROOT
         php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
-        cd vendor/snowdog/frontools
+        cd tools
         gulp styles
     else
         echo "----------------------------------------------------"
