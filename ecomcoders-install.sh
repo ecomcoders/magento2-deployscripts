@@ -2,6 +2,7 @@
 set -euo pipefail
 
 MAGENTO_CLI='php -d memory_limit=512M bin/magento'
+MAGENTO_ROOT=$(pwd -P)
 
 make_bin_magento_executable()
 {
@@ -47,7 +48,7 @@ import_database_from_production_snapshot_to_staging()
 
 apply_settings_from_est_csv_file()
 {
-    php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv
+    php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --excludeGroups sass
 }
 
 make_magento_production_ready()
@@ -61,6 +62,25 @@ make_magento_production_ready()
     $MAGENTO_CLI cache:enable
     $MAGENTO_CLI cache:flush
 }
+
+run_sass_styles_processing()
+{
+    if [[ "YES" == "$TRIGGER_SASS_STYLES_PROCESSING" ]]; then
+        echo "----------------------------------------------------"
+        echo "START: SASS styles processing."
+        cd vendor/snowdog/frontools
+        npm install
+        gulp setup
+        cd $MAGENTO_ROOT
+        php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
+        cd vendor/snowdog/frontools
+        gulp styles
+    else
+        echo "----------------------------------------------------"
+        echo "SKIPPED: SASS styles processing."
+    fi
+}
+
 #######################################
 # Main programm
 
@@ -77,3 +97,4 @@ esac
 
 apply_settings_from_est_csv_file
 make_magento_production_ready
+run_sass_styles_processing

@@ -10,8 +10,7 @@ export ENVROOTDIR=$(pwd -P)
 export ENVIRONMENT=${ENVROOTDIR##*/}
 export EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
 export N98='vendor/bin/n98-magerun2'
-export FLUSH_CACHE='NO'
-FLUSH_JS_CSS_CACHE='NO'
+export TRIGGER_SASS_STYLES_PROCESSING='NO'
 
 
 check_environment()
@@ -212,9 +211,9 @@ cleanup_build_folder()
 
 #######################################
 # Main programm
-while getopts 'c:' OPTION; do
+while getopts ':s' OPTION; do
     case "${OPTION}" in
-        c)FLUSH_CACHE="${OPTARG}";;
+        s)TRIGGER_SASS_STYLES_PROCESSING="YES";;
     esac
 done
 
