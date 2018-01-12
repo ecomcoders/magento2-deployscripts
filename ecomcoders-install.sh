@@ -51,6 +51,17 @@ apply_settings_from_est_csv_file()
     php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --excludeGroups sass
 }
 
+add_cache_hosts()
+{
+    if [[ "YES" == "$ADD_CACHE_HOSTS" ]]; then
+        HTTP_CACHE_HOSTS=$($EST HTTP_CACHE_HOSTS)
+        echo "----------------------------------------------------"
+        echo "START: Add http cache hosts: $HTTP_CACHE_HOSTS"
+
+        $MAGENTO_CLI setup:config:set --http-cache-hosts=$HTTP_CACHE_HOSTS
+    fi
+}
+
 make_magento_production_ready()
 {
     STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
@@ -96,5 +107,6 @@ case $ENVIRONMENT in
 esac
 
 apply_settings_from_est_csv_file
+add_cache_hosts
 make_magento_production_ready
 run_sass_styles_processing

@@ -11,6 +11,7 @@ export ENVIRONMENT=${ENVROOTDIR##*/}
 export EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
 export N98='vendor/bin/n98-magerun2'
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
+export ADD_CACHE_HOSTS='NO'
 
 
 check_environment()
@@ -211,9 +212,14 @@ cleanup_build_folder()
 
 #######################################
 # Main programm
-while getopts ':s' OPTION; do
+while getopts ':s:v' OPTION; do
     case "${OPTION}" in
-        s)TRIGGER_SASS_STYLES_PROCESSING="YES";;
+        s)
+            TRIGGER_SASS_STYLES_PROCESSING="YES"
+            ;;
+        v)
+            ADD_CACHE_HOSTS="YES"
+            ;;
     esac
 done
 
