@@ -212,7 +212,7 @@ cleanup_build_folder()
 
 #######################################
 # Main programm
-while getopts ':s:v' OPTION; do
+while getopts ':sv' OPTION; do
     case "${OPTION}" in
         s)
             TRIGGER_SASS_STYLES_PROCESSING="YES"
@@ -223,20 +223,5 @@ while getopts ':s:v' OPTION; do
     esac
 done
 
-check_environment
-init_directory_structure
-get_build_number_and_release_folder
-get_previous_buildnumber
-generate_tmp_dir
-extract_build_package
-move_files_to_release_folder
-copy_media_files_to_release_folder
-install_package
-write_build_info_file
-update_filesystem_permissions
-generate_shared_directory_symlinks
-check_db_head
-update_symlinks
-print_success_message
-remove_build_artifacts
-cleanup_build_folder
+echo $TRIGGER_SASS_STYLES_PROCESSING
+echo $ADD_CACHE_HOSTS
