@@ -3,7 +3,7 @@
     "description": "Magento 2 Deployment Scripts",
     "license": "OSL-3.0",
     "require": {
-        "n98/magerun2": "^1.5.0"
+        "n98/magerun2": "^2.0.0"
     },
     "authors": [
         {
