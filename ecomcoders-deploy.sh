@@ -9,7 +9,7 @@ PREVIOUS_BUILDFOLDER=''
 export ENVROOTDIR=$(pwd -P)
 export ENVIRONMENT=${ENVROOTDIR##*/}
 export EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-export N98='vendor/bin/n98-magerun2'
+export N98='php7.0 vendor/bin/n98-magerun2'
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
 export ADD_CACHE_HOSTS='NO'
 
