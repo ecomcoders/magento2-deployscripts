@@ -71,8 +71,8 @@ make_magento_production_ready()
 
     $MAGENTO_CLI setup:upgrade
     $MAGENTO_CLI setup:di:compile
-    $MAGENTO_CLI setup:static-content:deploy $STATIC_CONTENT_DEPLOY_PARAMS
     $MAGENTO_CLI deploy:mode:set --skip-compilation production
+    $MAGENTO_CLI setup:static-content:deploy $STATIC_CONTENT_DEPLOY_PARAMS
     $MAGENTO_CLI cache:enable
     $MAGENTO_CLI cache:flush
 }
