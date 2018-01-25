@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MAGENTO_CLI='php -d memory_limit=512M bin/magento'
+MAGENTO_CLI='php7.0 -d memory_limit=512M bin/magento'
 MAGENTO_ROOT=$(pwd -P)
 
 make_bin_magento_executable()
@@ -11,7 +11,7 @@ make_bin_magento_executable()
 
 configure_magento2_environment()
 {
-    bin/magento setup:config:set \
+    $MAGENTO_CLI setup:config:set \
         --backend-frontname=$($EST BACKEND_FRONTNAME) \
         --key=$($EST KEY) \
         --db-host=$($EST DB_HOST) \
