@@ -8,7 +8,7 @@ DB_HOST=''
 DB_USER=''
 DB_NAME=''
 DB_PASSWORD=''
-N98='vendor/bin/n98-magerun2'
+N98='php7.0 vendor/bin/n98-magerun2'
 
 check_and_set_paths()
 {
