@@ -59,6 +59,7 @@ add_cache_hosts()
         echo "START: Add http cache hosts: $HTTP_CACHE_HOSTS"
 
         $MAGENTO_CLI setup:config:set --http-cache-hosts=$HTTP_CACHE_HOSTS
+        $MAGENTO_CLI cache:flush
     else
         echo "----------------------------------------------------"
         echo "SKIPPED: Add http cache hosts."
