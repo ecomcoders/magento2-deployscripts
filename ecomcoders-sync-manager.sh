@@ -79,8 +79,8 @@ import_database()
 change_base_urls_to_dev()
 {
     cd $PATH_SCRIPT
-    $N98 config:set web/unsecure/base_url $BASE_URL
-    $N98 config:set web/secure/base_url $BASE_URL
+    $N98 config:store:set web/unsecure/base_url $BASE_URL
+    $N98 config:store:set web/secure/base_url $BASE_URL
 }
 
 create_admin_user()
@@ -93,6 +93,13 @@ create_admin_user()
         --admin-lastname $ADMIN_LASTNAME
     echo "----------------------------------------------------"
     echo "DONE: Create admin user with username '${ADMIN_USERNAME}' and password '${ADMIN_PASSWORD}'"
+}
+
+apply_settings_from_est_csv_file()
+{
+    cd ${PATH_PROJECT_ROOT}/shared/htdocs
+    $PHP_BIN vendor/bin/apply.php development vendor/bin/magento2-settings.csv --excludeGroups htaccess
+
 }
 
 upgrade_database()
@@ -122,8 +129,8 @@ case $1 in
         import_database
         change_base_urls_to_dev
         create_admin_user
-        # execute_envsettigstool_exclude_groups
         upgrade_database
+        apply_settings_from_est_csv_file
         clear_cache;;
     *)
         echo "$usage";;
