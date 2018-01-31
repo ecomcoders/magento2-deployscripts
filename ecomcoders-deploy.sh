@@ -2,14 +2,15 @@
 set -euo pipefail
 
 VALID_ENVIRONMENTS=" production staging "
-export BUILDNUMBER=''
-export PREVIOUS_BUILDNUMBER=''
 BUILDFOLDER=''
 PREVIOUS_BUILDFOLDER=''
+export BUILDNUMBER=''
+export PREVIOUS_BUILDNUMBER=''
 export ENVROOTDIR=$(pwd -P)
 export ENVIRONMENT=${ENVROOTDIR##*/}
-export EST="php vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-export N98='php7.0 vendor/bin/n98-magerun2'
+export PHP_BIN=$(which php)
+export EST="$PHP_BIN vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
+export N98="$PHP_BIN vendor/bin/n98-magerun2"
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
 export ADD_CACHE_HOSTS='NO'
 
@@ -212,13 +213,16 @@ cleanup_build_folder()
 
 #######################################
 # Main programm
-while getopts ':sv' OPTION; do
+while getopts ':svp:' OPTION; do
     case "${OPTION}" in
         s)
             TRIGGER_SASS_STYLES_PROCESSING="YES"
             ;;
         v)
             ADD_CACHE_HOSTS="YES"
+            ;;
+        p)
+            PHP_BIN="${OPTARG}"
             ;;
     esac
 done

@@ -2,7 +2,8 @@
 set -euo pipefail
 
 PATH_ENVIRONMENT=$(pwd -P)
-N98='vendor/bin/n98-magerun2'
+PHP_BIN=$(which php)
+N98="$PHP_BIN vendor/bin/n98-magerun2"
 TARGET_DB_SUFFIX=''
 CURRENT_DB_NAME=''
 TARGET_DB_PREFIX=''
@@ -26,7 +27,7 @@ get_current_db_name()
 
 get_target_db_name()
 {
-    TARGET_DB_PREFIX=$(php vendor/bin/value.php production vendor/bin/magento2-settings.csv Est_Handler_SetVar DB_NAME_PREFIX)
+    TARGET_DB_PREFIX=$($PHP_BIN vendor/bin/value.php production vendor/bin/magento2-settings.csv Est_Handler_SetVar DB_NAME_PREFIX)
     TARGET_DB_NAME=${TARGET_DB_PREFIX}${TARGET_DB_SUFFIX}
     echo "----------------------------------------------------"
     echo "DONE: Get target db name '${TARGET_DB_NAME}'"
@@ -58,6 +59,14 @@ clear_cache()
 }
 
 if [[ -L previous && -L current && -L latest && latest == $(readlink current) ]]; then
+    while getopts ':p:' OPTION; do
+        case "${OPTION}" in
+            p)
+                PHP_BIN="${OPTARG}"
+                ;;
+        esac
+    done
+
     get_target_db_suffix
     get_current_db_name
     get_target_db_name

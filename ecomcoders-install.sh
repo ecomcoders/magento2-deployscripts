@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MAGENTO_CLI='php7.0 -d memory_limit=512M bin/magento'
+MAGENTO_CLI="$PHP_BIN -d memory_limit=512M bin/magento"
 MAGENTO_ROOT=$(pwd -P)
 
 make_bin_magento_executable()

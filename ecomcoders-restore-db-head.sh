@@ -3,8 +3,9 @@
 set -euo pipefail
 
 PATH_ENVIRONMENT=$(pwd -P)
+PHP_BIN=$(which php)
 DRY_RUN='YES'
-N98='vendor/bin/n98-magerun2'
+N98="$PHP_BIN vendor/bin/n98-magerun2"
 
 get_db_credentials()
 {
@@ -13,7 +14,7 @@ get_db_credentials()
     DB_PASSWORD=$($N98 db:info password)
     DB_USER=$($N98 db:info username)
     DB_NAME_CURRENT=$($N98 db:info dbname)
-    DB_NAME_HEAD=$(php vendor/bin/value.php production vendor/bin/magento2-settings.csv Est_Handler_SetVar DB_NAME)
+    DB_NAME_HEAD=$($PHP_BIN vendor/bin/value.php production vendor/bin/magento2-settings.csv Est_Handler_SetVar DB_NAME)
     echo "----------------------------------------------------"
     echo "DB name (current): ${DB_NAME_CURRENT}"
     echo "DB name (head): ${DB_NAME_HEAD}"
@@ -139,7 +140,12 @@ remove_maintenance_flag()
 # Main programm
 while getopts 'd:p:' OPTION; do
     case "${OPTION}" in
-        d)DRY_RUN="${OPTARG}";;
+        d)
+            DRY_RUN="${OPTARG}"
+            ;;
+        p)
+            PHP_BIN="${OPTARG}"
+            ;;
     esac
 done
 
