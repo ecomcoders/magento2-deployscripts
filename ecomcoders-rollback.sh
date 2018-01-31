@@ -3,7 +3,6 @@ set -euo pipefail
 
 PATH_ENVIRONMENT=$(pwd -P)
 PHP_BIN=$(which php)
-N98="$PHP_BIN vendor/bin/n98-magerun2"
 TARGET_DB_SUFFIX=''
 CURRENT_DB_NAME=''
 TARGET_DB_PREFIX=''
@@ -66,6 +65,8 @@ if [[ -L previous && -L current && -L latest && latest == $(readlink current) ]]
                 ;;
         esac
     done
+
+    N98="$PHP_BIN vendor/bin/n98-magerun2"
 
     get_target_db_suffix
     get_current_db_name

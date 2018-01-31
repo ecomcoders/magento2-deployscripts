@@ -9,11 +9,15 @@ export PREVIOUS_BUILDNUMBER=''
 export ENVROOTDIR=$(pwd -P)
 export ENVIRONMENT=${ENVROOTDIR##*/}
 export PHP_BIN=$(which php)
-export EST="$PHP_BIN vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-export N98="$PHP_BIN vendor/bin/n98-magerun2"
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
 export ADD_CACHE_HOSTS='NO'
 
+
+define_dynamic_variables()
+{
+    export EST="$PHP_BIN vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
+    export N98="$PHP_BIN vendor/bin/n98-magerun2"
+}
 
 check_environment()
 {
@@ -228,6 +232,7 @@ while getopts ':svp:' OPTION; do
     esac
 done
 
+define_dynamic_variables
 check_environment
 init_directory_structure
 get_build_number_and_release_folder

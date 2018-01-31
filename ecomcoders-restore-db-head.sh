@@ -5,7 +5,6 @@ set -euo pipefail
 PATH_ENVIRONMENT=$(pwd -P)
 PHP_BIN=$(which php)
 DRY_RUN='YES'
-N98="$PHP_BIN vendor/bin/n98-magerun2"
 
 get_db_credentials()
 {
@@ -148,6 +147,8 @@ while getopts 'd:p:' OPTION; do
             ;;
     esac
 done
+
+N98="$PHP_BIN vendor/bin/n98-magerun2"
 
 get_db_credentials
 check_rollback_mode
