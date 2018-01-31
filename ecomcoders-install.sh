@@ -87,7 +87,7 @@ run_sass_styles_processing()
         npm install
         gulp setup
         cd $MAGENTO_ROOT
-        php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
+        $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
         cd tools
         gulp styles
     else
