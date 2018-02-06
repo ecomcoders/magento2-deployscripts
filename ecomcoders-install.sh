@@ -89,7 +89,13 @@ run_sass_styles_processing()
         cd $MAGENTO_ROOT
         $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
         cd tools
-        gulp styles
+
+        # Disable source maps generation in production environment
+        if [[ "$ENVIRONMENT" == production ]]; then
+            gulp styles --disableMaps
+        else
+            gulp styles
+        fi
     else
         echo "----------------------------------------------------"
         echo "SKIPPED: SASS styles processing."
