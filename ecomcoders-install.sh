@@ -87,7 +87,7 @@ run_sass_styles_processing()
         npm install
         gulp setup
         cd $MAGENTO_ROOT
-        $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass
+        $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass-step-1
         cd tools
 
         # Disable source maps generation in production environment
@@ -97,6 +97,11 @@ run_sass_styles_processing()
         else
             gulp styles
         fi
+
+        echo "START: Copy compiled css files back to theme vendor directory to enable proper merging/minification"
+        echo "SEE: \Magento\Framework\View\Design\FileResolution\Fallback\Resolver\Simple::resolveFile()"
+        cd $MAGENTO_ROOT
+        $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass-step-2
     else
         echo "----------------------------------------------------"
         echo "SKIPPED: SASS styles processing."
