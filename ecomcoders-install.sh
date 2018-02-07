@@ -48,7 +48,7 @@ import_database_from_production_snapshot_to_staging()
 
 apply_settings_from_est_csv_file()
 {
-    php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --excludeGroups sass-step-1, sass-step-2
+    php vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --excludeGroups sass
 }
 
 add_cache_hosts()
