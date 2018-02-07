@@ -92,6 +92,7 @@ run_sass_styles_processing()
 
         # Disable source maps generation in production environment
         if [[ "$ENVIRONMENT" == production ]]; then
+            echo "SASS: Disable maps while in production environment"
             gulp styles --disableMaps
         else
             gulp styles
