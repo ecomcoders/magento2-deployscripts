@@ -57,9 +57,7 @@ add_cache_hosts()
         HTTP_CACHE_HOSTS=$($EST HTTP_CACHE_HOSTS)
         echo "----------------------------------------------------"
         echo "START: Add http cache hosts: $HTTP_CACHE_HOSTS"
-
         $MAGENTO_CLI setup:config:set --http-cache-hosts=$HTTP_CACHE_HOSTS
-        curl -X BAN $($EST PROJECT_DOMAIN)
     else
         echo "----------------------------------------------------"
         echo "SKIPPED: Add http cache hosts."
@@ -108,6 +106,13 @@ run_sass_styles_processing()
     fi
 }
 
+flush_varnish()
+{
+    if [[ "YES" == "$ADD_CACHE_HOSTS" ]]; then
+        curl -X BAN $($EST PROJECT_DOMAIN)
+    fi
+}
+
 #######################################
 # Main programm
 
@@ -126,3 +131,4 @@ apply_settings_from_est_csv_file
 add_cache_hosts
 make_magento_production_ready
 run_sass_styles_processing
+flush_varnish
