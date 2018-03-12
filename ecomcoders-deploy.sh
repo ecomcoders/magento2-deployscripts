@@ -38,9 +38,11 @@ init_directory_structure()
         mkdir -p \
             shared/var/log \
             shared/var/report \
+            shared/sessions \
             shared/pub/media
         chmod g+w \
             shared/var/* \
+            shared/sessions \
             shared/pub/media
     fi
 }
