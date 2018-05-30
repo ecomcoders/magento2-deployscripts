@@ -118,7 +118,7 @@ flush_varnish()
 
 make_bin_magento_executable
 configure_magento2_environment
-add_required_install_date
+# add_required_install_date
 
 case $ENVIRONMENT in
     'production')
