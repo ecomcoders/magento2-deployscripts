@@ -20,6 +20,15 @@ configure_magento2_environment()
         --db-password=$($EST DB_PASSWORD)
 }
 
+add_required_install_date()
+{
+    sed -i -e '$ i\
+  "install" => array ("date" => "Wed,\ 28\ Jun\ 2017\ 13:59:53\ +0000",)
+' app/etc/env.php
+
+    sed -i -e "s/\"/'/g" app/etc/env.php
+}
+
 prepare-db-rollback()
 {
     echo "----------------------------------------------------"
@@ -109,6 +118,7 @@ flush_varnish()
 
 make_bin_magento_executable
 configure_magento2_environment
+# add_required_install_date
 
 case $ENVIRONMENT in
     'production')
