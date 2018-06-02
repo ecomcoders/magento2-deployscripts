@@ -23,7 +23,7 @@ configure_magento2_environment()
 add_required_install_date()
 {
     sed -i -e '$ i\
-  "install" => ["date" => "Wed,\ 28\ Jun\ 2017\ 13:59:53\ +0000"]
+  ,\n"install" => ["date" => "Wed,\ 28\ Jun\ 2017\ 13:59:53\ +0000"]
 ' app/etc/env.php
 
     sed -i -e "s/\"/'/g" app/etc/env.php
