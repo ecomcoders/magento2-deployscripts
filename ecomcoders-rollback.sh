@@ -54,7 +54,7 @@ change_db_name_in_env_file()
 
 clear_cache()
 {
-    bin/magento cache:flush
+    $PHP_BIN bin/magento cache:flush
 }
 
 if [[ -L previous && -L current && -L latest && latest == $(readlink current) ]]; then
