@@ -49,7 +49,7 @@ set_maintenance_flag()
 {
     if [[ "NO" == "$DRY_RUN" ]]; then
         echo "----------------------------------------------------"
-        bin/magento maintenance:enable
+        $PHP_BIN bin/magento maintenance:enable
     fi
 }
 
@@ -110,7 +110,7 @@ import_db_backup()
 change_db_name_in_env_file()
 {
     if [[ "NO" == "$DRY_RUN" ]]; then
-        bin/magento setup:config:set --db-name=${DB_NAME_HEAD}
+        $PHP_BIN bin/magento setup:config:set --db-name=${DB_NAME_HEAD}
         echo "----------------------------------------------------"
         echo "DONE: Modified db name in env.php"
     else
@@ -124,7 +124,7 @@ change_db_name_in_env_file()
 clear_cache()
 {
     if [[ "NO" == "$DRY_RUN" ]]; then
-        bin/magento cache:flush
+        $PHP_BIN bin/magento cache:flush
     fi
 }
 
@@ -132,7 +132,7 @@ remove_maintenance_flag()
 {
     if [[ "NO" == "$DRY_RUN" ]]; then
         echo "----------------------------------------------------"
-        bin/magento maintenance:disable
+        $PHP_BIN bin/magento maintenance:disable
     fi
 }
 #######################################
