@@ -81,8 +81,9 @@ run_sass_styles_processing()
     if [[ "YES" == "$TRIGGER_SASS_STYLES_PROCESSING" ]]; then
         echo "----------------------------------------------------"
         echo "START: SASS styles processing."
+        $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups preparation
         cd vendor/snowdog/frontools
-        npm install
+        npm ci
         gulp setup
         cd $MAGENTO_ROOT
         $PHP_BIN vendor/bin/apply.php $ENVIRONMENT vendor/bin/magento2-settings.csv --groups sass-step-1
