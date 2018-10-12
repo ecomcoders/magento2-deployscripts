@@ -82,6 +82,7 @@ run_sass_styles_processing()
         echo "----------------------------------------------------"
         echo "START: SASS styles processing."
         cd vendor/snowdog/frontools
+        npm set progress=false
         npm install
         gulp setup
         cd $MAGENTO_ROOT
