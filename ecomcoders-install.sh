@@ -83,7 +83,7 @@ run_sass_styles_processing()
         echo "START: SASS styles processing."
         cd vendor/snowdog/frontools
         echo $PATH
-        which node
+        printenv
         npm set progress=false
         npm install
         gulp setup
