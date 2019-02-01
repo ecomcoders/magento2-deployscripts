@@ -41,6 +41,9 @@ create_package()
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
         --exclude-vcs \
+        --exclude=**/dev/** \
+        --exclude=**/update/** \
+        --exclude=**/Test/** \
         --exclude='.*auth\.json' .
 }
 #######################################
