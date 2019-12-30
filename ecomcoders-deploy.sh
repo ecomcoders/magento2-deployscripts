@@ -12,11 +12,16 @@ export PHP_BIN=$(which php)
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
 export ADD_CACHE_HOSTS='NO'
 
+install_n98_magerun2()
+{
+    wget --directory-prefix=vendor/bin/ https://files.magerun.net/n98-magerun2.phar
+    chmod u+x vendor/bin/n98-magerun2.phar
+}
 
 define_dynamic_variables()
 {
     export EST="$PHP_BIN vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-    export N98="$PHP_BIN vendor/bin/n98-magerun2"
+    export N98="$PHP_BIN vendor/bin/n98-magerun2.phar"
 }
 
 check_environment()
@@ -234,6 +239,7 @@ while getopts ':svp:' OPTION; do
     esac
 done
 
+install_n98_magerun2
 define_dynamic_variables
 check_environment
 init_directory_structure
