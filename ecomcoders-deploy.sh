@@ -12,11 +12,6 @@ export PHP_BIN=$(which php)
 export TRIGGER_SASS_STYLES_PROCESSING='NO'
 export ADD_CACHE_HOSTS='NO'
 
-install_n98_magerun2()
-{
-    wget --directory-prefix=vendor/bin/ https://files.magerun.net/n98-magerun2.phar
-    chmod u+x vendor/bin/n98-magerun2.phar
-}
 
 define_dynamic_variables()
 {
@@ -125,6 +120,8 @@ copy_media_files_from_production_snapshot_to_staging()
 install_package()
 {
     cd releases/${BUILDFOLDER}/
+    wget --directory-prefix=vendor/bin/ https://files.magerun.net/n98-magerun2.phar
+    chmod u+x vendor/bin/n98-magerun2.phar
     vendor/bin/ecomcoders-install.sh
 }
 write_build_info_file()
@@ -239,7 +236,6 @@ while getopts ':svp:' OPTION; do
     esac
 done
 
-install_n98_magerun2
 define_dynamic_variables
 check_environment
 init_directory_structure
