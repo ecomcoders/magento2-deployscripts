@@ -16,7 +16,7 @@ export ADD_CACHE_HOSTS='NO'
 define_dynamic_variables()
 {
     export EST="$PHP_BIN vendor/bin/value.php $ENVIRONMENT vendor/bin/magento2-settings.csv Est_Handler_SetVar"
-    export N98="$PHP_BIN vendor/bin/n98-magerun2.phar"
+    export N98="$PHP_BIN vendor/bin/n98-magerun2"
 }
 
 check_environment()
@@ -120,8 +120,8 @@ copy_media_files_from_production_snapshot_to_staging()
 install_package()
 {
     cd releases/${BUILDFOLDER}/
-    wget --directory-prefix=vendor/bin/ https://files.magerun.net/n98-magerun2.phar
-    chmod u+x vendor/bin/n98-magerun2.phar
+    wget --directory-prefix=vendor/bin/ --output-document=n98-magerun2 https://files.magerun.net/n98-magerun2-3.2.0.phar
+    chmod u+x vendor/bin/n98-magerun2
     vendor/bin/ecomcoders-install.sh
 }
 write_build_info_file()
