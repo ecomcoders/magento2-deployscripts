@@ -120,8 +120,9 @@ copy_media_files_from_production_snapshot_to_staging()
 install_package()
 {
     cd releases/${BUILDFOLDER}/
-    wget --directory-prefix=vendor/bin/ --output-document=n98-magerun2 https://files.magerun.net/n98-magerun2-3.2.0.phar
+    wget --output-document=vendor/bin/n98-magerun2 https://files.magerun.net/n98-magerun2-3.2.0.phar
     chmod u+x vendor/bin/n98-magerun2
+    shasum -a256 vendor/bin/n98-magerun2
     vendor/bin/ecomcoders-install.sh
 }
 write_build_info_file()
