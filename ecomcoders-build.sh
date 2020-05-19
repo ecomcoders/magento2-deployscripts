@@ -40,7 +40,7 @@ create_package()
     echo "Creating package '${PACKAGE_NAME}'"
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
-        --exclude-vcs \
+        --exclude='.git' \
         --exclude=**/dev/** \
         --exclude=**/update/** \
         --exclude=**/Test/** \
