@@ -41,6 +41,7 @@ create_package()
     echo "----------------------------------------------------"
     tar -czf "${PACKAGE_PATH}${PACKAGE_NAME}" \
         --exclude='.git' \
+        --exclude='.github/' \
         --exclude=dev/ \
         --exclude=**/update/** \
         --exclude=**/Test/** \
