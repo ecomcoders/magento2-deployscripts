@@ -45,7 +45,7 @@ import_database_from_production_snapshot_to_staging()
     $N98 db:drop --tables --force
     echo "----------------------------------------------------"
     echo "Start: Import database backup from latest snapshot into $($EST DB_NAME)"
-    $N98 db:import ${ENVROOTDIR}/../production/snapshots/latest/db/*.sql
+    mysql -u$($EST DB_USERNAME) -p$($EST DB_PASSWORD) -h$($EST DB_HOST) $($EST DB_NAME) < ${ENVROOTDIR}/../production/snapshots/latest/db/*.sql
     echo "----------------------------------------------------"
     echo "DONE: Import database from latest snapshot backup."
 }
