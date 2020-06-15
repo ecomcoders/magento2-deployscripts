@@ -43,7 +43,11 @@ prepare-db-rollback()
 import_database_from_production_snapshot_to_staging()
 {
     $N98 db:drop --tables --force
+    echo "----------------------------------------------------"
+    echo "Start: Import database backup from latest snapshot into $($EST DB_NAME)"
     $N98 db:import ${ENVROOTDIR}/../production/snapshots/latest/db/*.sql
+    echo "----------------------------------------------------"
+    echo "DONE: Import database from latest snapshot backup."
 }
 
 apply_settings_from_est_csv_file()
