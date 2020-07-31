@@ -98,7 +98,7 @@ create_admin_user()
 apply_settings_from_est_csv_file()
 {
     cd ${PATH_PROJECT_ROOT}/shared/htdocs
-    $PHP_BIN vendor/bin/apply.php development vendor/bin/magento2-settings.csv --excludeGroups htaccess
+    $PHP_BIN vendor/bin/apply.php development vendor/bin/magento2-settings.csv
 
 }
 
