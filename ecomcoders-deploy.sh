@@ -38,6 +38,7 @@ init_directory_structure()
         mkdir -p \
             shared/var/log \
             shared/var/report \
+            shared/var/export \
             shared/sessions \
             shared/pub/media
         chmod g+w \
@@ -156,6 +157,7 @@ generate_shared_directory_symlinks()
 
     ln -sfn ../../../shared/var/log    log
     ln -sfn ../../../shared/var/report report
+    ln -sfn ../../../shared/var/export export
     cd ..
 
     cd pub
