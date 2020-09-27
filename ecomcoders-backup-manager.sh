@@ -111,7 +111,7 @@ backup_files()
     echo "----------------------------------------------------"
     echo "START: Backup Code Files"
     cd $path_releases
-    cp -a  $latest_build_name ${path_snapshot_latest}files
+    rsync -a --exclude='var/cache/' --exclude='var/page_cache/' $latest_build_name ${path_snapshot_latest}files
 }
 
 backup_media()
