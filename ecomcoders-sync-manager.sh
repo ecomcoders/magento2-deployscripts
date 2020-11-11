@@ -63,7 +63,7 @@ backup_local_db()
 {
     echo "----------------------------------------------------"
     echo "START: Backup local database: ${DB_NAME}"
-    mysqldump -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME} > ${PATH_DB_TEMP_BACKUP}/${DB_NAME}.sql
+    mysqldump --no-tablespaces -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME} > ${PATH_DB_TEMP_BACKUP}/${DB_NAME}.sql
 }
 
 import_database()

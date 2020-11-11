@@ -44,7 +44,7 @@ backup_production_db()
 {
     echo "----------------------------------------------------"
     echo "START: Dump production database ..."
-    mysqldump -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${SOURCE_DB_NAME} > ${TMPFILE}
+    mysqldump --no-tablespaces -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${SOURCE_DB_NAME} > ${TMPFILE}
     echo "----------------------------------------------------"
     echo "DONE: Dump production database '${SOURCE_DB_NAME}' into ${TMPFILE}"
 }

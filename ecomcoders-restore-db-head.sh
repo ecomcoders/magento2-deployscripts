@@ -57,7 +57,7 @@ backup_current_database()
 {
     echo "----------------------------------------------------"
     echo "START: Backup current DB '${DB_NAME_CURRENT}' to '${TMPFILE}'"
-    mysqldump -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME_CURRENT} > ${TMPFILE}
+    mysqldump --no-tablespaces -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME_CURRENT} > ${TMPFILE}
     echo "----------------------------------------------------"
     echo "DONE: Backup current DB"
 }

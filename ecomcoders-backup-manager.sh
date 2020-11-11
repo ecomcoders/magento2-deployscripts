@@ -133,7 +133,7 @@ backup_database()
 
     echo "----------------------------------------------------"
     echo "START: Backup database: ${DB_NAME}"
-    mysqldump -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME} > db-${DB_NAME}.sql
+    mysqldump --no-tablespaces -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} ${DB_NAME} > db-${DB_NAME}.sql
 }
 
 print_summary()
