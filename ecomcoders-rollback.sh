@@ -46,7 +46,7 @@ change_db_name_in_env_file()
     echo "----------------------------------------------------"
     echo "START: Modify db name in env.php file"
     cd "${PATH_ENVIRONMENT}/previous"
-    $PHP_BIN bin/magento setup:config:set --db-name=${TARGET_DB_NAME}
+    $PHP_BIN bin/magento setup:config:set --db-name=${TARGET_DB_NAME} --no-interaction
     echo "----------------------------------------------------"
     echo "DONE: Modified db name to ${TARGET_DB_NAME}"
     cat app/etc/env.php
