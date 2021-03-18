@@ -110,7 +110,7 @@ import_db_backup()
 change_db_name_in_env_file()
 {
     if [[ "NO" == "$DRY_RUN" ]]; then
-        $PHP_BIN bin/magento setup:config:set --db-name=${DB_NAME_HEAD}
+        $PHP_BIN bin/magento setup:config:set --db-name=${DB_NAME_HEAD} --no-interaction
         echo "----------------------------------------------------"
         echo "DONE: Modified db name in env.php"
     else
