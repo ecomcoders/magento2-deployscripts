@@ -24,6 +24,7 @@ print_env_info()
 {
     cd "${path_environment}../"
     INSTANCE_NAME=$(basename "$(pwd)")
+    echo -e 'Subject: Backup Manager Log Report TEST\n\n'
     echo "----------------------------------------------------"
     echo "INSTANCE: $INSTANCE_NAME"
     echo "DATE: $DATE"
