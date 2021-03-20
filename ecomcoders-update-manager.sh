@@ -42,25 +42,19 @@ check_reboot()
     fi
 }
 
-function processArgs()
-{
-    # Parse Arguments
-    for arg in "$@"
-    do
-        case $arg in
-            --resource-arn=*)
-                RESOURCE_ARN="${arg#*=}"
-            ;;
-            --iam-role-arn=*)
-                IAM_ROLE_ARN="${arg#*=}"
-            ;;
-        esac
-    done
-}
-
 #######################################
 # Main programm
-processArgs
+while getopts ':r:i:' OPTION; do
+        case "${OPTION}" in
+            r)
+                RESOURCE_ARN="${OPTARG}"
+                ;;
+            i)
+                IAM_ROLE_ARN="${OPTARG}"
+                ;;
+        esac
+    done
+
 create_backup
 install_updates
 check_reboot
