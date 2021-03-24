@@ -21,6 +21,7 @@
         "ecomcoders-rollback.sh",
         "ecomcoders-restore-db-head.sh",
         "ecomcoders-update-notifier.sh",
-        "ecomcoders-update-manager.sh"
+        "ecomcoders-update-manager.sh",
+        "ecomcoders-optimize-images.sh"
     ]
 }
