@@ -28,7 +28,7 @@ optimize_images()
             # production
             echo 'Running in PRODUCTION mode'
             echo "----------------------------------------------------"
-            find . -name '*.jpg' | xargs jpegoptim -o -m60 --strip-all --all-progressive -t
+            find . -name '*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
             write_timestampfile
         else
             # dry run
@@ -48,7 +48,7 @@ optimize_images()
             # production
             echo 'Running in PRODUCTION mode'
             echo "----------------------------------------------------"
-            find . -newer $LAST_SEEN_FILE -name '*.jpg' | xargs jpegoptim -o -m60 --strip-all --all-progressive -t
+            find . -newer $LAST_SEEN_FILE -name '*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
             write_timestampfile
         else
             # dry run
