@@ -28,13 +28,15 @@ optimize_images()
             # production
             echo 'Running in PRODUCTION mode'
             echo "----------------------------------------------------"
-            find . -name '*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
+            find . -name '*.jpg' -not -wholename './catalog/product/*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
+            find . -wholename './catalog/product/cache/*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
             write_timestampfile
         else
             # dry run
             echo 'DRY RUN'
             echo "----------------------------------------------------"
-            find . -name '*.jpg'
+            find . -name '*.jpg' -not -wholename './catalog/product/*.jpg'
+            find . -wholename './catalog/product/cache/*.jpg'
         fi
     else
         # Timestamp file found
@@ -48,13 +50,15 @@ optimize_images()
             # production
             echo 'Running in PRODUCTION mode'
             echo "----------------------------------------------------"
-            find . -newer $LAST_SEEN_FILE -name '*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
+            find . -newer $LAST_SEEN_FILE -name '*.jpg' -not -wholename './catalog/product/*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
+            find . -newer $LAST_SEEN_FILE -wholename './catalog/product/cache/*.jpg' | xargs jpegoptim -o -m70 --strip-all --all-progressive -t
             write_timestampfile
         else
             # dry run
             echo 'DRY RUN'
             echo "----------------------------------------------------"
-            find . -newer $LAST_SEEN_FILE -name '*.jpg'
+            find . -newer $LAST_SEEN_FILE -name '*.jpg' -not -wholename './catalog/product/*.jpg'
+            find . -newer $LAST_SEEN_FILE -wholename './catalog/product/cache/*.jpg'
         fi
     fi
 }
