@@ -21,16 +21,6 @@ check_if_build_number_is_given()
     fi
 }
 
-commit_changes()
-{
-    git config user.email "jenkins@muenster-webdesign.net"
-    git config user.name "Mr. Jenkins"
-    git checkout -b "build-${BUILD_NUMBER}"
-    git add .
-    git commit -m "Mr. Jenkins created a build: build-${BUILD_NUMBER}"
-    git push origin "build-${BUILD_NUMBER}"
-}
-
 create_package()
 {
     if [ ! -d "$PACKAGE_PATH" ] ; then mkdir "$PACKAGE_PATH" ; fi
@@ -58,5 +48,4 @@ case "${OPTION}" in
 done
 
 check_if_build_number_is_given
-commit_changes
 create_package
