@@ -121,10 +121,10 @@ copy_media_files_from_production_snapshot_to_staging()
 install_package()
 {
     cd releases/${BUILDFOLDER}/
-    wget --output-document=vendor/bin/n98-magerun2 https://files.magerun.net/n98-magerun2-3.2.0.phar
+    wget --output-document=vendor/bin/n98-magerun2 https://files.magerun.net/n98-magerun2-5.2.0.phar
     chmod u+x vendor/bin/n98-magerun2
     shasum -a256 vendor/bin/n98-magerun2
-    echo "SHA256 should be: 5b5b4f7a857f7716950b6ef090c005c455d5e607f800a50b7b7aefa86d1c4e36"
+    echo "SHA256 should be: 6a649a6c5f3d333e8f2c1ec7bd47ce3d53c49293b31b92073a55d946d74941cf"
     vendor/bin/ecomcoders-install.sh
 }
 write_build_info_file()
