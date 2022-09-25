@@ -72,6 +72,8 @@ make_magento_production_ready()
 {
     STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
 
+    $MAGENTO_CLI indexer:status
+    $MAGENTO_CLI indexer:reindex
     $MAGENTO_CLI -vvv setup:upgrade
     $MAGENTO_CLI setup:di:compile
     $MAGENTO_CLI deploy:mode:set --skip-compilation production
