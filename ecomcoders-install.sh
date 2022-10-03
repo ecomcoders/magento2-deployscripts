@@ -72,6 +72,7 @@ make_magento_production_ready()
 {
     STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
 
+    $MAGENTO_CLI cache:flush
     $MAGENTO_CLI setup:db-schema:upgrade
     $MAGENTO_CLI setup:db-data:upgrade
     $MAGENTO_CLI setup:di:compile
