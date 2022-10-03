@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
 
-MAGENTO_CLI="$PHP_BIN -d memory_limit=512M bin/magento"
+MAGENTO_CLI="$PHP_BIN -d memory_limit=512M -d error_reporting=24575 bin/magento"
 MAGENTO_ROOT=$(pwd -P)
 
 make_bin_magento_executable()
@@ -72,7 +72,6 @@ make_magento_production_ready()
 {
     STATIC_CONTENT_DEPLOY_PARAMS=$($EST STATIC_CONTENT_DEPLOY_PARAMS)
 
-    $MAGENTO_CLI cache:flush
     $MAGENTO_CLI setup:db-schema:upgrade
     $MAGENTO_CLI setup:db-data:upgrade
     $MAGENTO_CLI setup:di:compile
