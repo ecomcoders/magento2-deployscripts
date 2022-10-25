@@ -2,13 +2,18 @@
 set -euo pipefail
 
 DATE=$(date +%d-%m-%Y_%H-%M)
-MAX_SNAPSHOTS_IN_ARCHIVE=4
+MAX_SNAPSHOTS_IN_ARCHIVE=7
 INSTANCE_NAME=''
 DB_HOST=''
 DB_USER=''
 DB_NAME=''
 DB_PASSWORD=''
-N98='php vendor/bin/n98-magerun2'
+export PHP_BIN=$(which php)
+
+define_dynamic_variables()
+{
+    export N98="$PHP_BIN vendor/bin/n98-magerun2"
+}
 
 check_and_set_paths()
 {
@@ -145,12 +150,14 @@ print_summary()
 
 #######################################
 # Main programm
-while getopts 'c:' OPTION; do
+while getopts 'c:p:' OPTION; do
     case "${OPTION}" in
         c)MAX_SNAPSHOTS_IN_ARCHIVE="${OPTARG}";;
+        p)PHP_BIN="${OPTARG}";;
     esac
 done
 
+define_dynamic_variables
 check_and_set_paths
 print_env_info
 test_and_prepare_snashot_dir
