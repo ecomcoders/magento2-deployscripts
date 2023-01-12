@@ -17,7 +17,8 @@ configure_magento2_environment()
         --db-host=$($EST DB_HOST) \
         --db-name=$($EST DB_NAME) \
         --db-user=$($EST DB_USERNAME) \
-        --db-password=$($EST DB_PASSWORD)
+        --db-password=$($EST DB_PASSWORD) \
+        --consumers-wait-for-messages=0
 }
 
 add_required_install_date()
